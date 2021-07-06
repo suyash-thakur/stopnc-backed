@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+const elasticClient = require("../helper/elasticClient");
+
 const mongoosePaginate = require('mongoose-paginate-v2');
 var mongoosastic = require('mongoosastic');
 
@@ -19,6 +21,6 @@ var mongoosastic = require('mongoosastic');
     click: { type: Number, default: 0 },
     isDraft: { type: Boolean, default: false, required: true },
   });
-blogSchema.plugin(mongoosastic);
+blogSchema.plugin(mongoosastic, { esClient: elasticClient });
 blogSchema.plugin(mongoosePaginate);
   module.exports = mongoose.model('Post', blogSchema);

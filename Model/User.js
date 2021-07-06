@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const elasticClient = require("../helper/elasticClient");
+
 var mongoosastic = require('mongoosastic');
 
 var Schema = mongoose.Schema;
@@ -19,7 +21,7 @@ const userSchema = mongoose.Schema({
   isRequestBlogger: { type: Boolean, default: false}
 
 });
-userSchema.plugin(mongoosastic);
+userSchema.plugin(mongoosastic, { esClient: elasticClient });
 const User = mongoose.model('user', userSchema);
 
 
