@@ -87,7 +87,7 @@ router.post("/forgot-password", (req, res, next) => {
           </h5>
           <br>
           <a href="${
-            "http://localhost:4200/forgot-password/" +
+            "http://www.stopnc.com/forgot-password/" +
             tokenData.userId +
             "/" +
             tokenData.token
@@ -181,7 +181,7 @@ router.post("/signup",  (req, res, next) => {
                 </h5>
                 <br>
                 <a href="${
-                  "http://localhost:4200/emailVerify/" +
+                  "http://www.stopnc.com/emailVerify/" +
                   tokenData.userId +
                   "/" +
                   tokenData.token
@@ -302,7 +302,7 @@ router.post('/resendToken', async (req, res) => {
             </h5>
             <br>
             <a href="${
-              "http://localhost:4200/emailVerify/" +
+              "http://www.stopnc.com/emailVerify/" +
               tokenData.userId +
               "/" +
               tokenData.token
