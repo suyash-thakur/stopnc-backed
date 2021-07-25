@@ -83,9 +83,12 @@ router.get('/homepageInfo', async (req, res) => {
 
   } else {
     let homepage = (await HomePage.find({}).populate('FirstBlog').populate('SecondBlog').populate({ path: 'TopStories', populate: { path: 'authorId', select: 'name about discription profileImage' } }).sort({ _id: -1 }).limit(1))[0];
-    const saveCacheData = await SET_ASYNC('homepageInfo', JSON.stringify(homepage), "EX", 86400);
+    if (homepage) {
+      const saveCacheData = await SET_ASYNC('homepageInfo', JSON.stringify(homepage), "EX", 86400);
+    }
     res.status(201).json({ home: homepage });
   }
+
 });
 router.get("/allBlog", (req, res, next) => {
   Blog.find().populate('authorId', 'name').then ( blog => {
